@@ -33,14 +33,12 @@ int main(void)
 	}
 	
 	input_dup = _strdup(input);
-	
-	if(handle_cd(input_dup3, input_dup) == 0) 
+	if(handle_cd(input_dup3, input_dup) == 0)
 	{
 		free(input_dup);
 		continue;
 	}
 	break;
-	
 	}
 	free(input);
 	return 0;
