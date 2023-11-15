@@ -4,10 +4,12 @@ int main(void)
 {
 	char *input = NULL;
 	size_t size = 0;
+	int isterminal = 0;
 	char *input_dup, *input_dup2, *tok, *input_dup3;
 
 	while (1)
 	{
+		if (isatty(isterminal) != 0)
 		write_str("$ ");
 		if (getline(&input, &size, stdin) == -1)
 		{
@@ -34,14 +36,14 @@ int main(void)
 	
 	input_dup = _strdup(input);
 	
-	if(handle_cd(input_dup3, input_dup) == 0) 
+	if (handle_cd(input_dup3, input_dup) == 0) 
 	{
 		free(input_dup);
 		continue;
 	}
+	if (isterminal != 0)
 	break;
-	
+	continue;
 	}
-	free(input);
-	return 0;
+	return (0);
 }	
