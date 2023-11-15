@@ -12,23 +12,24 @@
 #include <fcntl.h>
 #include <errno.h>
 
-typedef struct {
-    char *arg;
-    char **argv;
-    char *path;
-    int argc;
-    unsigned int line_count;
-    int err_num;
-    int linecount_flag;
-    char *fname;
-    char **environ;
-    int env_changed;
-    int status;
+typedef struct
+{
+	char *arg;
+	char **argv;
+	char *path;
+	int argc;
+	unsigned int line_count;
+	int err_num;
+	int linecount_flag;
+	char *fname;
+	char **environ;
+	int env_changed;
+	int status;
 
-    char **cmd_buf;
-    int cmd_buf_type;
-    int readfd;
-    int histcount;
+	char **cmd_buf;
+	int cmd_buf_type;
+	int readfd;
+	int histcount;
 } info_t;
 
 #define READ_BUF_SIZE 1024
