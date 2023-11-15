@@ -11,10 +11,12 @@
 int _env1(char *env_name, char *env_value)
 {
 	int i;
+
 	for (i = 0 ; environ[i] != NULL; i++)
 	{
 		char *token = strdup(environ[i]);
 		char *tok = strtok(token, "=");
+
 		if (_strcmp(env_name, tok) == 0)
 		{
 			env_name = _strcat(env_name, "=");
@@ -45,11 +47,14 @@ int _env1(char *env_name, char *env_value)
 int _unenv(char *env_name)
 {
 	int i;
+
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		char *token = _strdup(environ[i]);
 		char *tok = strtok(token, "=");
+
 		if (_strcmp(env_name, tok) == 0)
+
 		{
 			free(token);
 			for (; environ[i] != NULL; i++)
@@ -72,9 +77,11 @@ int _unenv(char *env_name)
 int env(void)
 {
 	int i;
+
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n", environ[i]);
+		write_str(environ[i]);
+		write_str("\n");
 	}
 	return (0);
 }
