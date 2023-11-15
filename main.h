@@ -1,3 +1,9 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <string.h>
@@ -24,3 +30,5 @@ char *_strcat(char *src, char *dest);
 int _fork(char *input, char *token, int arg_size);
 int _fork_proc(char *str, char *str1, char *token);
 int _atoi(char *str);
+
+#endif
