@@ -17,7 +17,7 @@ int _env1(char *env_name, char *env_value)
 		char *tok = strtok(token, "=");
 		if (_strcmp(env_name, tok) == 0)
 		{
-			env_name = _strcat(variable_name, "=");
+			env_name = _strcat(env_name, "=");
 			env_value = _strcat(env_name, env_value);
 			environ[i] = env_value;
 			free(env_name);
@@ -42,7 +42,7 @@ int _env1(char *env_name, char *env_value)
 *
 * Return: (0) if successful, (1) otherwise
 */
-int _unsetenv(char *variable_name)
+int _unenv(char *env_name)
 {
 	int i;
 	for (i = 0; environ[i] != NULL; i++)
