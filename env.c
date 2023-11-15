@@ -55,6 +55,7 @@ int _unenv(char *env_name)
 		char *tok = strtok(token, "=");
 
 		if (_strcmp(env_name, tok) == 0)
+
 		{
 			free(token);
 			for (; environ[i] != NULL; i++)
@@ -80,7 +81,8 @@ int env(void)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n", environ[i]);
+		write_str(environ[i]);
+		write_str("\n");
 	}
 	return (0);
 }

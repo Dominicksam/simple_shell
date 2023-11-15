@@ -32,4 +32,3 @@ int _fork_proc(char *str, char *str1, char *token);
 int _atoi(char *str);
 
 #endif
-

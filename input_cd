@@ -13,6 +13,7 @@ char *_strcat(char *src, char *dest)
 {
 	char *new_str = malloc(sizeof(char) * (_strlen(src) + _strlen(dest) + 1));
 	int i, j;
+
 	for (i = 0, j = 0;; i++, j++)
 	{
 	if (src[j] == '\0')
@@ -30,7 +31,7 @@ char *_strcat(char *src, char *dest)
 	}
 	new_str[i] = src[j];
 	}
-	return new_str;
+	return (new_str);
 }
 
 /**
@@ -43,6 +44,7 @@ int token_num(char *str)
 {
 	int i;
 	int size = 0;
+
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] != '\0'))
@@ -51,6 +53,5 @@ int token_num(char *str)
 		}
 		continue;
 	}
-	return size;
+	return (size);
 }
-
