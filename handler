@@ -136,5 +136,6 @@ char *_strcat(char *src, char *dest)
 		}
 		new_str[i] = src[j];
 	}
+
 	return (new_str);
 }
