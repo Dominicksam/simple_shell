@@ -16,7 +16,7 @@ int _unenv(char *env_name);
 int env(void);
 int environ_cmd(char *input);
 int input_env(char *str);
-int handle_cd(char *input, char *input_dup);
+int handle_cd(char *input_dup, char *input_dup2);
 void _exit_status(char *input);
 extern char **environ;
 char *_strdup(char *str);
