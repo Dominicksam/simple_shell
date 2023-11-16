@@ -27,6 +27,11 @@ void read_command(char *command, size_t size, FILE *input)
 			exit(EXIT_FAILURE);
 		}
 	}
+	else if (ferror(input))
+	{
+		perror("Error while reading input");
+		exit(EXIT_FAILURE);
+	}
 
 	command[strcspn(command, "\n")] = '\0';
 }
