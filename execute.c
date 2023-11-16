@@ -45,7 +45,6 @@ void execute_command(const char *command)
 		{
 			dm_print(stderr, "Command '%s' not found\n", command);
 		}
-		wait(NULL);
 	}
 }
 
