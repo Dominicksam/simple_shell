@@ -35,6 +35,16 @@ void execute_command(const char *command)
 	}
 	else
 	{
+		int status;
+		pid_t wpid;
+
+		do {
+			wpid = waitpid(child_pid, &status, WUNTRACED);
+		}
+		if (WEXITSTATUS(status) == EXIT_FAILURE)
+		{
+			dm_print(stderr, "Command '%s' not found\n", command);
+		}
 		wait(NULL);
 	}
 }
