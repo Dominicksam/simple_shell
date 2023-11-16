@@ -20,22 +20,21 @@ int main(int argc, char *argv[])
 		read_command(command, sizeof(command), input);
 		execute_command(command);
 	}
-	return (0);
 
 	if (argc > 1)
 	{
 		input = fopen(argv[1], "r");
 		if (input == NULL)
 		{
-		fprintf(stderr, "Error opening the file.\n");
-		exit(EXIT_FAILURE);
+			fprintf(stderr, "Error opening the file.\n");
+			exit(EXIT_FAILURE);
 		}
 		if (input != stdin)
 		{
 			fclose(input);
 		}
-		return (0);
 	}
+	return (0);
 }
 
 /**
