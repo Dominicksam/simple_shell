@@ -41,7 +41,7 @@ extern char **environ;
 void prompt_display(void);
 void dm_print(const char *text);
 void read_command(char *command, size_t size, FILE *file);
-void execute_command(const char *command);
+int execute_command(const char *command);
 void dm_print_int(int value);
 int interactive(info_t *info);
 int is_delim(char c, char *delim);

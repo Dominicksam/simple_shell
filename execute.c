@@ -3,39 +3,57 @@
 /**
  * execute_command - Execute a shell command.
  * @command: The command to be executed.
- *
+ * return: 0 on success
  * This function creates a child process using `fork()` and attempts to execute
  * the specified command in that child process using `execve()`. The parent
  * process waits for the child to complete. If error, an error message
  * is printed using `perror()` and the program exits with an error status.
  */
-
-void execute_command(const char *command)
+int execute_command(const char *command)
 {
-	pid_t child_pid = fork();
+	char *env_path = getenv("PATH");
+	char *token;
 	char *args[2];
-	char *envp[] = { NULL };
+	pid_t child_pid;
+	token = strtok(env_path, ":");
 
-	if (child_pid == -1)
+	while (token != NULL)
 	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	else if (child_pid == 0)
-	{
-		args[0] = (char *)command;
-		args[1] = NULL;
+		char *full_path = malloc(strlen(token) + strlen(command) + 2);
 
-
-		if (execve(command, args, envp) == -1)
+		sprintf(full_path, "%s/%s", token, command);
+		if (access(full_path, X_OK) == 0)
 		{
-			perror("execve");
-			exit(EXIT_FAILURE);
+			args[0] = full_path;
+			args[1] = NULL;
+
+			child_pid = fork();
+			if (child_pid == -1)
+			{
+				perror("fork");
+				free(full_path);
+				exit(EXIT_FAILURE);
+			}
+			else if (child_pid == 0)
+			{
+				if (execve(full_path, args, NULL) == -1)
+				{
+					perror("execve");
+					free(full_path);
+					exit(EXIT_FAILURE);
+				}
+			}
+			else
+			{
+				wait(NULL);
+				free(full_path);
+				return (1);
+			}
 		}
+		free(full_path);
+		token = strtok(NULL, ":");
 	}
-	else
-	{
-		wait(NULL);
-	}
+	fprintf(stderr, "%s: command not found\n", command);
+	return (0);
 }
 
